@@ -1,133 +1,105 @@
-Wayang AI Detection System
+# Wayang AI Detection System
 
-Wayang AI Detection adalah sistem kecerdasan buatan berbasis Computer Vision dan Deep Learning yang dirancang untuk melakukan klasifikasi tokoh wayang dari citra digital secara otomatis. Sistem ini menggabungkan Convolutional Neural Network (CNN) dengan teknik Transfer Learning MobileNetV2, serta dilengkapi dengan pengolahan citra digital dan antarmuka web interaktif.
+**Wayang AI Detection** is an artificial intelligence system based on Computer Vision and Deep Learning, designed to automatically classify wayang (traditional Indonesian puppet) characters from digital images. The system combines Convolutional Neural Networks (CNN) with Transfer Learning using MobileNetV2, and is equipped with digital image processing techniques and an interactive web interface.
 
-Tujuan utama sistem ini adalah membantu pelestarian budaya wayang Indonesia melalui pemanfaatan teknologi AI, sekaligus menjadi media edukasi yang informatif dan mudah digunakan.
+The main goal of this system is to support the preservation of Indonesian wayang culture through AI technology, while also serving as an informative and user-friendly educational tool.
 
-🎯 Tujuan Sistem
+## 🎯 System Objectives
 
-Sistem ini bertujuan untuk:
+This system aims to:
 
-Mengklasifikasikan tokoh wayang berdasarkan citra digital
+* Classify wayang characters based on digital images
+* Identify wayang characters quickly and accurately
+* Display character descriptions as educational information
+* Visualize image processing stages for model analysis
+* Provide a real-world implementation of CNN and Transfer Learning on local cultural data
 
-Mengidentifikasi karakter wayang secara cepat dan akurat
+## ⚙️ How the System Works
 
-Menampilkan deskripsi tokoh wayang sebagai informasi edukatif
+The general workflow of the system is as follows:
 
-Memvisualisasikan tahapan pengolahan citra untuk analisis model
+### 1. Image Input
 
-Menjadi implementasi nyata CNN dan Transfer Learning pada budaya lokal
+Users upload wayang images through the web interface.
 
-⚙️ Cara Kerja Sistem
+### 2. Image Preprocessing
 
-Alur kerja sistem secara umum adalah sebagai berikut:
+The system performs several image processing steps:
 
-Input Gambar
-Pengguna mengunggah citra wayang melalui antarmuka web.
+* Resize image to 224×224 pixels
+* Convert to grayscale
+* Thresholding (Otsu)
+* Edge detection (Canny, Sobel, Prewitt)
+* Morphological operations (opening and closing)
 
-Preprocessing Citra
-Sistem melakukan beberapa tahap pengolahan citra:
+### 3. CNN Classification
 
-Resize citra ke ukuran 224×224 piksel
+The preprocessed image is processed by a CNN model based on MobileNetV2 to determine the wayang character class.
 
-Konversi ke grayscale
+### 4. Output Results
 
-Thresholding (Otsu)
+The system displays:
 
-Deteksi tepi (Canny, Sobel, Prewitt)
+* Wayang character name
+* Confidence score
+* Character description
+* Visualization of image processing results
 
-Operasi morfologi (opening dan closing)
+## 🏗️ System Architecture
 
-Klasifikasi dengan CNN
-Citra hasil preprocessing diproses oleh model CNN berbasis MobileNetV2 untuk menentukan kelas tokoh wayang.
+The system consists of three main components:
 
-Output Hasil Deteksi
-Sistem menampilkan:
+### Backend (FastAPI)
 
-Nama tokoh wayang
+* Handles request and response
+* Manages image upload
+* Performs image preprocessing
+* Runs AI model prediction
+* Returns results in JSON format
 
-Tingkat keyakinan (confidence score)
+### AI Model (TensorFlow & Keras)
 
-Deskripsi tokoh wayang
+* Uses MobileNetV2 pretrained on ImageNet
+* Fine-tuned on final layers to adapt to wayang characteristics
+* Uses class weighting for imbalanced datasets
 
-Visualisasi hasil pengolahan citra
+### Frontend (HTML, Bootstrap, JavaScript)
 
-🏗️ Arsitektur Sistem
+* Responsive and modern web interface
+* Image upload and preview
+* Displays prediction results and image visualization
 
-Sistem terdiri dari tiga komponen utama:
+## 📊 Methods Used
 
-1. Backend (FastAPI)
+* Convolutional Neural Network (CNN)
+* Transfer Learning (MobileNetV2)
+* Model Fine-Tuning
+* Data Augmentation
+* Digital Image Processing
+* Class Weighting
+* Early Stopping & Learning Rate Scheduler
 
-Mengelola request dan response
+## 🖼️ Dataset
 
-Menangani upload gambar
+The dataset consists of images of wayang characters from various classes such as Arjuna, Bima, Semar, Gatotkaca, and others. The dataset is organized into folders based on class labels and used for training the model.
 
-Melakukan preprocessing citra
+**Note:** The dataset is not included in this repository due to size limitations.
 
-Menjalankan prediksi model AI
+## 🚀 System Advantages
 
-Mengirim hasil dalam format JSON
+* Uses a lightweight and efficient model (MobileNetV2)
+* Performs well on limited datasets
+* Provides image processing visualization
+* Interactive web interface
+* Easy to develop and deploy
 
-2. Model AI (TensorFlow & Keras)
+## 📚 Future Improvements
 
-Menggunakan MobileNetV2 pretrained ImageNet
+* Adding more wayang character classes
+* Integrating Grad-CAM for model interpretability
+* Cloud deployment (Render, Railway, Docker)
+* Mobile version or Progressive Web App (PWA)
 
-Fine-tuning pada layer akhir untuk menyesuaikan karakteristik wayang
+## 🇮🇩 Cultural Contribution
 
-Dilengkapi class weighting untuk dataset tidak seimbang
-
-3. Frontend (HTML, Bootstrap, JavaScript)
-
-Antarmuka web responsif dan modern
-
-Upload gambar dan preview
-
-Menampilkan hasil prediksi dan visualisasi citra
-
-📊 Metode yang Digunakan
-
-Convolutional Neural Network (CNN)
-
-Transfer Learning MobileNetV2
-
-Fine-Tuning Model
-
-Data Augmentation
-
-Pengolahan Citra Digital
-
-Class Weighting
-
-Early Stopping & Learning Rate Scheduler
-
-🖼️ Dataset
-
-Dataset terdiri dari citra tokoh wayang dengan berbagai kelas seperti Arjuna, Bima, Semar, Gatotkaca, dan lainnya. Dataset disusun dalam struktur folder berdasarkan nama kelas dan digunakan sebagai input pelatihan model.
-
-Catatan: Dataset tidak disertakan di repository karena keterbatasan ukuran.
-
-🚀 Kelebihan Sistem
-
-Menggunakan model ringan dan efisien (MobileNetV2)
-
-Akurat untuk dataset terbatas
-
-Menyediakan visualisasi pengolahan citra
-
-Antarmuka web interaktif
-
-Mudah dikembangkan dan di-deploy
-
-📚 Potensi Pengembangan
-
-Penambahan jumlah kelas wayang
-
-Integrasi Grad-CAM untuk interpretabilitas model
-
-Deployment ke cloud (Render, Railway, Docker)
-
-Versi mobile atau Progressive Web App (PWA)
-
-🇮🇩 Kontribusi Budaya
-
-Sistem ini diharapkan dapat menjadi sarana digitalisasi dan pelestarian seni wayang sebagai warisan budaya Indonesia melalui penerapan teknologi kecerdasan buatan modern.
+This system is expected to contribute to the digital preservation and promotion of wayang as an important Indonesian cultural heritage through the application of modern artificial intelligence technology.
